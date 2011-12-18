@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RGBpixmap.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\piece_bishop.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\piece_king.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\piece_knight.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\piece_pawn.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\piece_rook.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\piece_queen.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LaigToProlog.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Socket.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{0ff0a3ba-ca88-4d72-b90c-e6dc38dc49ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{6749e30a-60e3-4392-805c-2b2ea6aedd82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{5b7f5130-1869-4e5c-87b3-f767ae970cf9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Brown-fine-wood-texture.bmp">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\carpet.bmp">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\marble_black.bmp">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\piece_black.bmp">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\piece_white.bmp">
+      <Filter>Resources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\RGBpixmap.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\piece_bishop.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\piece_king.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\piece_knight.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\piece_pawn.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\piece_rook.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Auxiliary.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\piece_queen.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LaigToProlog.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Socket.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Jogador.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Cell.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
