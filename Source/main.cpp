@@ -290,6 +290,8 @@ void Draw_Scene(GLenum mode){
 	glFrustum(-xy_aspect*.04, xy_aspect*.04, -.04, .04, .08, 500.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+	glEnable(GL_COLOR_MATERIAL);
+	LoadDefaultMaterials();
 
 	scene_texture_change();
 	 unsigned int l = 1;
@@ -300,14 +302,25 @@ void Draw_Scene(GLenum mode){
         glRotated(20.0, 1.0,0.0,0.0);
 		glRotated(-45.0, 0.0,1.0,0.0);
         glMultMatrixf(view_rotate);
-
+		if(drawaxis)
+			scene.Draw_Axis(glQ);
 	} else if(camera == 2){
 		gluLookAt(2.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+		if(drawaxis)
+			scene.Draw_Axis(glQ);
 	} else if(camera == 3){
 		gluLookAt(0.0, 15.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+		if(drawaxis)
+			scene.Draw_Axis(glQ);
 	} else if(camera == 4){
 		gluLookAt(0.0, 15.0, -10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+		if(drawaxis)
+			scene.Draw_Axis(glQ);
+		
 	}
+
+	glDisable(GL_COLOR_MATERIAL);
+	LoadDefaultMaterials();
 
 	glPushMatrix();
     glPushMatrix();
@@ -329,9 +342,9 @@ void Draw_Scene(GLenum mode){
                     else tex=white_cell_texture;
             }
 
-			if(mode == GL_SELECT){
+			/*if(mode == GL_SELECT){
 				glLoadName(l);
-			}
+			}*/
                                                 
             glTranslatef(1.0,0.0,0.0);
             if(mode == GL_SELECT){
@@ -359,8 +372,8 @@ void Draw_Scene(GLenum mode){
 	glEnable(GL_COLOR_MATERIAL);
 	LoadDefaultMaterials();
 	Draw_Pieces(mode);
-	glDisable(GL_COLOR_MATERIAL);
 	LoadDefaultMaterials();
+	glDisable(GL_COLOR_MATERIAL);
     glPopMatrix();
 
     glPopMatrix();
@@ -393,9 +406,6 @@ void display(void){
 	gluQuadricOrientation(glQ, GLU_OUTSIDE);
 
 	LoadDefaultMaterials();
-
-	//if(drawaxis)
-	//	scene.Draw_Axis(glQ);
 
 
 	glDisable(GL_COLOR_MATERIAL);

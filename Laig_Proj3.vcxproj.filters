@@ -59,6 +59,18 @@
     <None Include="Resources\piece_white.bmp">
       <Filter>Resources</Filter>
     </None>
+    <None Include="Resources\lava.bmp">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\marble_blue.bmp">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\marble_red.bmp">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\stone.bmp">
+      <Filter>Resources</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\RGBpixmap.h">
@@ -95,6 +107,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Cell.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Debug.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
