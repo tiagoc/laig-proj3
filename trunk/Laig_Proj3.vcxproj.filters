@@ -16,9 +16,6 @@
     <ClCompile Include="Source\piece_knight.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\piece_pawn.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\piece_rook.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -74,9 +71,6 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Source\piece_knight.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\piece_pawn.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Source\piece_rook.h">
