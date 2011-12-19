@@ -1394,7 +1394,7 @@ Knight::Knight(unsigned int pos_x, unsigned int pos_y, float color[3])
 {
 	this->pos_x=pos_x;
 	this->pos_y=pos_y;
-	for (unsigned int i=0;i<2;i++)
+	for (unsigned int i=0;i<3;i++)
 		this->color[i]=color[i];
 }
 

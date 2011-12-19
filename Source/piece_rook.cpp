@@ -863,24 +863,20 @@ Rook::Rook(unsigned int pos_x, unsigned int pos_y, float color[3])
 {
 	this->pos_x=pos_x;
 	this->pos_y=pos_y;
-	for (unsigned int i=0;i<2;i++)
+	for (unsigned int i=0;i<3;i++)
 		this->color[i]=color[i];
 }
 
 void Rook::render (float scale)
 {
-	
 	float x = this->get_pos_x();
 	float y = this->get_pos_y();
 	glPushMatrix();
 	glTranslated(y-1,-0.5,-x+1);
 	glPushMatrix();
     glScaled(scale,scale,scale);
-	glEnable(GL_COLOR);
 	glColor3f(color[0],color[1],color[2]);
-	
     for(int i=0; i< FACES_COUNT*3; i+=3){
-		glColor3f(0.0,0.0,255.0);
         glBegin(GL_TRIANGLES);
         glNormal3f(vertexs_rook[indexes_rook[i]].nx,vertexs_rook[indexes_rook[i]].ny,vertexs_rook[indexes_rook[i]].nz);
         glTexCoord2f(vertexs_rook[indexes_rook[i]].u,vertexs_rook[indexes_rook[i]].v);

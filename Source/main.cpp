@@ -224,7 +224,11 @@ void Draw_Scene(GLenum mode){
 
     glPushMatrix();
     glTranslated(-3.5,1.6,3.5);
+	glEnable(GL_COLOR_MATERIAL);
+	LoadDefaultMaterials();
     scene.Draw_Pieces();
+	glDisable(GL_COLOR_MATERIAL);
+	LoadDefaultMaterials();
     glPopMatrix();
 
     glPopMatrix();

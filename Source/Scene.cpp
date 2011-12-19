@@ -15,43 +15,27 @@ double orig_radius = 0.5;
 int orig_slices = 8;
 int orig_stacks = 16;
 
-float white[3]={0.0,255.0,0.0};
-float black[3]={0.0,0.0,255.0};
+float white_piece[3]={0.153,0.255,0.255};
+float black_piece[3]={0.0,0.0,0.0};
 
 // Pieces
-King White_King(1,5,white);
-Queen White_Queen(1,4,white);
-Bishop White_Bishop_1(1,3,white);
-Bishop White_Bishop_2(1,6,white);
-Knight White_Knight_1(1,2,white);
-Knight White_Knight_2(1,7,white);
-Rook White_Rook_1(1,1,white);
-Rook White_Rook_2(1,8,white);
-Pawn White_Pawn_1(2,1,white);
-Pawn White_Pawn_2(2,2,white);
-Pawn White_Pawn_3(2,3,white);
-Pawn White_Pawn_4(2,4,white);
-Pawn White_Pawn_5(2,5,white);
-Pawn White_Pawn_6(2,6,white);
-Pawn White_Pawn_7(2,7,white);
-Pawn White_Pawn_8(2,8,white);
+King White_King(1,5,white_piece);
+Queen White_Queen(1,4,white_piece);
+Bishop White_Bishop_1(1,3,white_piece);
+Bishop White_Bishop_2(1,6,white_piece);
+Knight White_Knight_1(1,2,white_piece);
+Knight White_Knight_2(1,7,white_piece);
+Rook White_Rook_1(1,1,white_piece);
+Rook White_Rook_2(1,8,white_piece);
 
-King Black_King(8,5,black);
-Queen Black_Queen(8,4,black);
-Bishop Black_Bishop_1(8,3,black);
-Bishop Black_Bishop_2(8,6,black);
-Knight Black_Knight_1(8,7,black);
-Knight Black_Knight_2(8,2,black);
-Rook Black_Rook_1(8,1,black);
-Rook Black_Rook_2(8,8,black);
-Pawn Black_Pawn_1(7,1,black);
-Pawn Black_Pawn_2(7,2,black);
-Pawn Black_Pawn_3(7,3,black);
-Pawn Black_Pawn_4(7,4,black);
-Pawn Black_Pawn_5(7,5,black);
-Pawn Black_Pawn_6(7,6,black);
-Pawn Black_Pawn_7(7,7,black);
-Pawn Black_Pawn_8(7,8,black);
+King Black_King(8,5,black_piece);
+Queen Black_Queen(8,4,black_piece);
+Bishop Black_Bishop_1(8,3,black_piece);
+Bishop Black_Bishop_2(8,6,black_piece);
+Knight Black_Knight_1(8,7,black_piece);
+Knight Black_Knight_2(8,2,black_piece);
+Rook Black_Rook_1(8,1,black_piece);
+Rook Black_Rook_2(8,8,black_piece);
 
 
 void Scene::Draw_Axis(GLUquadric* glQ){
@@ -283,14 +267,6 @@ void Scene::Draw_Pieces()
 	White_Knight_2.render(0.001);
 	White_Rook_1.render(0.001);
 	White_Rook_2.render(0.001);
-	/*White_Pawn_1.render(0.001);
-	White_Pawn_2.render(0.001);
-	White_Pawn_3.render(0.001);
-	White_Pawn_4.render(0.001);
-	White_Pawn_5.render(0.001);
-	White_Pawn_6.render(0.001);
-	White_Pawn_7.render(0.001);
-	White_Pawn_8.render(0.001);*/
 
 	Black_King.render(0.001);
 	Black_Queen.render(0.001);
@@ -300,58 +276,4 @@ void Scene::Draw_Pieces()
 	Black_Knight_2.render(0.001);
 	Black_Rook_1.render(0.001);
 	Black_Rook_2.render(0.001);
-	/*Black_Pawn_1.render(0.001);
-	Black_Pawn_2.render(0.001);
-	Black_Pawn_3.render(0.001);
-	Black_Pawn_4.render(0.001);
-	Black_Pawn_5.render(0.001);
-	Black_Pawn_6.render(0.001);
-	Black_Pawn_7.render(0.001);
-	Black_Pawn_8.render(0.001);*/
 }
-/*
-void Scene::Draw_Scene(GLenum mode){
-	glPushMatrix();
-	glPushMatrix();
-		glPushMatrix();
-		glTranslated(0.0,-16.5,0.0);
-		Draw_Floor();
-		glPopMatrix();
-		glTranslated(-5.0,0.0,-6.0);
-		Draw_Board();
-		int n = 0;
-		glPushMatrix();
-			int tex = 0;
-			for(int i = 0; i < sizeBoard; i++){
-				glTranslatef(-sizeBoard,0.0,1.0);
-				for(int j = 0; j < sizeBoard; j++){	
-					if((i%2) == 0){
-						if(j%2 == 0) tex=4;
-						else tex=3;
-					} else {
-						if(j%2 == 0) tex=3;
-						else tex=4;
-					}
-					/*n++;
-					if(mode == GL_SELECT){
-						glLoadName(n);
-					}
-					glTranslatef(1.0,0.0,0.0);
-					Draw_PositionBoard(tex);
-				}
-			}
-		glPopMatrix();
-	glPopMatrix();
-		
-	glPushMatrix();
-		glTranslated(-7.5,0.0,-7.5);
-		Draw_Table();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslated(-3.5,1.6,3.5);
-	Draw_Pieces();
-	glPopMatrix();
-
-	glPopMatrix();
-}*/
