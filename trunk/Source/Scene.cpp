@@ -61,6 +61,7 @@ void Scene::Draw_Axis(GLUquadric* glQ){
 	glPopMatrix();
 	
 	// Z axis - Blue
+
 	glColor3f(0.0,0.0,1.0);
 	glPushMatrix();
 	gluCylinder(glQ, axis_radius_begin, axis_radius_end, axis_lenght, axis_nslices, axis_nstacks);

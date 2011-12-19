@@ -182,8 +182,42 @@ void BoardInicialize(){
 
 void move(GLuint idnewcel){
 
-
 		int newx = 0, newy = 0;
+
+		if (idnewcel>=1 && idnewcel<=8){
+			newx=8;
+			newy=idnewcel;}
+
+		if (idnewcel>=9 && idnewcel<=16){
+			newx=7;
+			newy=idnewcel-8;}
+
+		if (idnewcel>=17 && idnewcel<=24){
+			newx=6;
+			newy=idnewcel-16;}
+
+		if (idnewcel>=25 && idnewcel<=32){
+			newx=5;
+			newy=idnewcel-24;}
+
+		if (idnewcel>=33 && idnewcel<=40){
+			newx=4;
+			newy=idnewcel-32;}
+
+		if (idnewcel>=41 && idnewcel<=48){
+			newx=3;
+			newy=idnewcel-40;}
+
+		if (idnewcel>=49 && idnewcel<=56){
+			newx=2;
+			newy=idnewcel-48;}
+
+		if (idnewcel>=57 && idnewcel<=64){
+			newx=1;
+			newy=idnewcel-56;}
+	
+
+		/*
 		if(idnewcel>= 1 && idnewcel<= 64 ){
 			if(idnewcel>= 1 && idnewcel<= 8 ){
 				newy = idnewcel%8;
@@ -203,14 +237,14 @@ void move(GLuint idnewcel){
 			} else if(idnewcel>= 33 && idnewcel<= 40){
 				newx = 5; newy = idnewcel%8;
 				if(idnewcel%8 == 0) newy = 8;
-			}
+			}*/
 
 			cout << "COLOCADA -> " << idnewcel << endl;
 
 			White_Bishop_1.set_pos_x(newx);
 			White_Bishop_1.set_pos_y(newy);
 			anime = false;
-		}
+		//}
 	
 }
 
@@ -335,7 +369,7 @@ void Draw_Scene(GLenum mode){
         glTranslatef(-sizeBoard,0.0,1.0);
         for(int j = 0; j < sizeBoard; j++){        
             if((i%2) == 0){
-                    if(j%2 == 0) tex=white_cell_texture;
+				if(j%2 == 0) tex=white_cell_texture;
                     else tex=black_cell_texture;
             } else {
                     if(j%2 == 0) tex=black_cell_texture;
@@ -604,13 +638,13 @@ void initialization()
 	pixmap.readBMPFile("Resources/stone.bmp");
 	pixmap.setTexture(9);
 
+	pixmap.readBMPFile("Resources/piece_white_glow.bmp");
+	pixmap.setTexture(10);
+	
 
 	//glutTimerFunc(10, move, 0);
 
 	// compile the display list, store a triangle in it
-
-		
-
 }
 
 void wireframeControl(int d){
