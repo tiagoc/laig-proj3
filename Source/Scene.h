@@ -25,7 +25,7 @@ public:
 	void Draw_Table(unsigned int texture_number);
 
 	void Draw_Scene(GLenum mode);
-	void Draw_Pieces();
+	//void Draw_Pieces();
 };
 
 #endif

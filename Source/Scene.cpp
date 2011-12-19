@@ -14,9 +14,10 @@ int axis_nstacks = 1;
 double orig_radius = 0.5;
 int orig_slices = 8;
 int orig_stacks = 16;
-
-float white_piece[3]={0.153,0.255,0.255};
+/*
+float white_piece[3]={0.9,1.0,1.0};
 float black_piece[3]={0.0,0.0,0.0};
+
 
 // Pieces
 King White_King(1,5,white_piece);
@@ -36,7 +37,7 @@ Knight Black_Knight_1(8,7,black_piece);
 Knight Black_Knight_2(8,2,black_piece);
 Rook Black_Rook_1(8,1,black_piece);
 Rook Black_Rook_2(8,8,black_piece);
-
+*/
 
 void Scene::Draw_Axis(GLUquadric* glQ){
 
@@ -257,6 +258,7 @@ void Scene::Draw_Table(unsigned int texture_number){
 	glEnable(GL_CULL_FACE);
 }
 
+/*
 void Scene::Draw_Pieces()
 {
 	White_King.render(0.001);
@@ -276,4 +278,4 @@ void Scene::Draw_Pieces()
 	Black_Knight_2.render(0.001);
 	Black_Rook_1.render(0.001);
 	Black_Rook_2.render(0.001);
-}
+}*/
