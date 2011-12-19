@@ -493,12 +493,12 @@ serverLoop(Stream) :-
 	flush_output(Stream),
 	(ClientMsg == quit; ClientMsg == end_of_file), !.
 
-server_input(initialize,ok(Board)) :- initBoard(Board),!.
+server_input(initialize, Board) :- initBoard(Board), viewTab(Board), !.
 
-server_input(continueMove(Player, Tab, X, Y, Piece, L, N), ok(EndBoard)) :-
+server_input(continueMove(Player, Tab, X, Y, Piece, L, N), EndBoard) :-
 	continueMove(Player, EndBoard, X, Y, Piece, L, N), !.
 
-server_input(isPossible(Tab, X, Y, Piece, LX, LY, N, Bool), ok(NBool)) :-
+server_input(isPossible(Tab, X, Y, Piece, LX, LY, N, Bool), NBool) :-
 	isPossible(Tab, X, Y, Piece, LX, LY, N, NBool), !.
 	
 server_input(bye, ok):-!.

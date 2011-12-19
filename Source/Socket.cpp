@@ -1,4 +1,5 @@
 #include "Socket.h"
+#include "LaigToProlog.h"
 
 SOCKET m_socket;
 
@@ -71,3 +72,8 @@ void quit() {
 	receiveMessage(ans);
 }
 
+bool readBoardCheck(char* s, vector<string> board){
+    board = CharToVector(s);
+    if(board.size() == 0) return false;
+    return true;
+}

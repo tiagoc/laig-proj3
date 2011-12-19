@@ -18,7 +18,7 @@
 #include "LaigToProlog.h"
 #include "piece_bishop.h"
 #include "Scene.h"
-
+#include <time.h>
 
 using namespace std;
 
@@ -83,6 +83,7 @@ GLUI_Checkbox *check;
 #define IPADDRESS "127.0.0.1"
 #define PORT "60070"
 
+vector<string> board;
 
 // Picking
 #define BUFSIZE 512
@@ -93,6 +94,16 @@ SOCKET *ms;
 
 // Pixmap for the textures
 RGBpixmap pixmap;
+
+// Camera
+int camera = 1; // 1 for perspective view, 2 for top view, 3 for player 1 view, 4 for player 2 view
+
+// Scene texture vars
+int scene_texture = 1;
+int floor_texture = 2;
+int table_texture = 1;
+int black_cell_texture = 5;
+int white_cell_texture = 4;
 
 struct g_mouseState{
 	bool leftButton;
@@ -111,12 +122,27 @@ void LoadDefaultMaterials()
 	glMaterialfv(GL_FRONT, GL_AMBIENT,   mat1_ambient);
 }
 
-void BoardInicialize(){
-	string answer = "initialiaze.\n";
-	char* s = new char [answer.size()];
-	strcpy(s, answer.c_str());
-	sendMessage(s, answer.size());
+void scene_texture_change(){
+	if (scene_texture==1){
+		floor_texture = 2;
+		table_texture = 1;
+		black_cell_texture = 5;
+		white_cell_texture = 4;}
+	else if(scene_texture==2){
+		floor_texture = 8;
+		table_texture = 9;
+		black_cell_texture = 6;
+		white_cell_texture = 7;}
+}
 
+void BoardInicialize(){
+    string question = "initialize.\n";
+    char* s = new char [question.size()];
+    strcpy(s, question.c_str());
+    sendMessage(s, question.size());
+    char ans[500];
+    receiveMessage(ans);
+    readBoardCheck(ans, board);
 }
 
 void animated(int x, int y, int newy, int newx){
@@ -132,62 +158,76 @@ void Draw_Scene(GLenum mode){
 	//glTranslatef(obj_pos[0], obj_pos[1], -obj_pos[2]);
 	//glRotated(20.0, 1.0,0.0,0.0);
 	//glRotated(-45.0, 0.0,1.0,0.0);
-	glMultMatrixf(view_rotate);
+	//glMultMatrixf(view_rotate);
 
-	gluLookAt(2.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	scene_texture_change();
+	 unsigned int l = 1;
 
-
-	glPushMatrix();
-	glPushMatrix();
-		glPushMatrix();
-		glTranslated(0.0,-16.5,0.0);
-		scene.Draw_Floor();
-		glPopMatrix();
-		glTranslated(-5.0,0.0,-6.0);
-		scene.Draw_Board();
-			int tex = 0;
-			for(int i = 0; i < sizeBoard; i++){
-				if(n < 64 && mode == GL_SELECT){
-					n++;
-				}
-
-				/*if(mode == GL_SELECT){
-					glLoadName(n);
-				}*/
-				glTranslatef(-sizeBoard,0.0,1.0);
-				for(int j = 0; j < sizeBoard; j++){	
-					if((i%2) == 0){
-						if(j%2 == 0) tex=4;
-						else tex=3;
-					} else {
-						if(j%2 == 0) tex=3;
-						else tex=4;
-					}
-								
-					glTranslatef(1.0,0.0,0.0);
-					if(mode == GL_SELECT){
-						glPushName(n);
-					}
-					scene.Draw_PositionBoard(tex);
-					if(mode == GL_SELECT){
-						glPopName();
-					}
-				}
+	if(camera == 1){ 
+		glTranslated(0.0,0.0,-25.0);
+		glTranslatef(obj_pos[0], obj_pos[1], -obj_pos[2]);
+        glRotated(20.0, 1.0,0.0,0.0);
+		glRotated(-45.0, 0.0,1.0,0.0);
+        glMultMatrixf(view_rotate);
+	}
+		else if(camera == 2){
+			gluLookAt(2.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+		}
+			else if(camera == 3){
+				gluLookAt(0.0, 15.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 			}
-		glPopMatrix();
-	glPopMatrix();
-		
-	glPushMatrix();
-		glTranslated(-7.5,0.0,-7.5);
-		scene.Draw_Table();
-	glPopMatrix();
+				else if(camera == 4){
+					gluLookAt(0.0, 15.0, -10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+				}
 
 	glPushMatrix();
-	glTranslated(-3.5,1.6,3.5);
-	scene.Draw_Pieces();
-	glPopMatrix();
+    glPushMatrix();
+    glPushMatrix();
+    glTranslated(0.0,-16.5,0.0);
+    scene.Draw_Floor(floor_texture);
+    glPopMatrix();
+    glTranslated(-5.0,0.0,-6.0);
+    scene.Draw_Board();
+    int tex = 0;
+    for(int i = 0; i < sizeBoard; i++){
+                                
+        glTranslatef(-sizeBoard,0.0,1.0);
+        for(int j = 0; j < sizeBoard; j++){        
+            if((i%2) == 0){
+                    if(j%2 == 0) tex=white_cell_texture;
+                    else tex=black_cell_texture;
+            } else {
+                    if(j%2 == 0) tex=black_cell_texture;
+                    else tex=white_cell_texture;
+            }
+                                                
+            glTranslatef(1.0,0.0,0.0);
+            if(mode == GL_SELECT){
+                    glPushName(l);
+            }
+            scene.Draw_PositionBoard(tex);
+            if(mode == GL_SELECT){
+                    glPopName();
+            }
+            if(mode == GL_SELECT){
+                    l++;
+            }
+        }
+    }
+    glPopMatrix();
+    glPopMatrix();
+                
+    glPushMatrix();
+        glTranslated(-7.5,0.0,-7.5);
+        scene.Draw_Table(table_texture);
+    glPopMatrix();
 
-	glPopMatrix();
+    glPushMatrix();
+    glTranslated(-3.5,1.6,3.5);
+    scene.Draw_Pieces();
+    glPopMatrix();
+
+    glPopMatrix();
 
 }
 
@@ -414,6 +454,17 @@ void initialization()
 	pixmap.readBMPFile("Resources/piece_black.bmp");
 	pixmap.setTexture(5);
 
+	pixmap.readBMPFile("Resources/marble_blue.bmp");
+	pixmap.setTexture(6);
+
+	pixmap.readBMPFile("Resources/marble_red.bmp");
+	pixmap.setTexture(7);
+
+	pixmap.readBMPFile("Resources/lava.bmp");
+	pixmap.setTexture(8);
+
+	pixmap.readBMPFile("Resources/stone.bmp");
+	pixmap.setTexture(9);
 
 
 	// compile the display list, store a triangle in it
@@ -471,6 +522,21 @@ int main(int argc, char* argv[]){
 	glui2->add_checkbox("Wireframe",&wireframe,1,wireframeControl);
 	glui2->add_checkbox("FreeRoam",&freeRoam,-1,NULL);
 	glui2->add_column(false);
+
+	GLUI_Listbox *listbox = glui2->add_listbox("Cameras",&camera,-1,NULL);
+	listbox->add_item(1,"Perspective");
+	listbox->add_item(2,"Top View");
+	listbox->add_item(3,"Player 1 View");
+	listbox->add_item(4,"Player 2 View");
+	listbox->set_int_val(2);
+	glui2->add_column(false);
+
+	GLUI_Listbox *listbox_2 = glui2->add_listbox("Scenes",&scene_texture,-1,NULL);
+	listbox_2->add_item(1,"Scene 1");
+	listbox_2->add_item(2,"Scene 2");
+	listbox_2->set_int_val(1);
+	glui2->add_column(false);
+
 
 	/* We register the idle callback with GLUI, not with GLUT */
 	GLUI_Master.set_glutIdleFunc( myGlutIdle );
