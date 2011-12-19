@@ -25,13 +25,18 @@
   <ItemGroup>
     <None Include="Resources\Brown-fine-wood-texture.bmp" />
     <None Include="Resources\carpet.bmp" />
+    <None Include="Resources\lava.bmp" />
     <None Include="Resources\marble_black.bmp" />
+    <None Include="Resources\marble_blue.bmp" />
+    <None Include="Resources\marble_red.bmp" />
     <None Include="Resources\piece_black.bmp" />
     <None Include="Resources\piece_white.bmp" />
+    <None Include="Resources\stone.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Auxiliary.h" />
     <ClInclude Include="Source\Cell.h" />
+    <ClInclude Include="Source\Debug.h" />
     <ClInclude Include="Source\Jogador.h" />
     <ClInclude Include="Source\LaigToProlog.h" />
     <ClInclude Include="Source\piece_bishop.h" />
