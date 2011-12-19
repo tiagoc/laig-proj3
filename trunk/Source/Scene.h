@@ -21,9 +21,9 @@ public:
 	void Draw_Rectangle (float x1, float y1, float x2, float y2, std::string axis, bool normal, unsigned int texture_number, float s, float t);
 	void Draw_PositionBoard(unsigned int idT);
 	void Draw_Board();
-	void Draw_LegTable();
-	void Draw_Floor();
-	void Draw_Table();
+	void Draw_LegTable(unsigned int texture_number);
+	void Draw_Floor(unsigned int texture_number);
+	void Draw_Table(unsigned int texture_number);
 
 	void Draw_Scene(GLenum mode);
 	void Draw_Pieces();

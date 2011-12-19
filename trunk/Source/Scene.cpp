@@ -200,72 +200,72 @@ void Scene::Draw_Board(){
 	glEnable(GL_CULL_FACE);
 }
 
-void Scene::Draw_LegTable(){
+void Scene::Draw_LegTable(unsigned int texture_number){
 	glPushMatrix();
 		glTranslated(0.0,-15.0,0.0);
 		glPushMatrix();
-			Draw_Rectangle(0.0,0.0,1.5,1.5, "y", 0, 1, 1.0, 1.0);
+			Draw_Rectangle(0.0,0.0,1.5,1.5, "y", 0, texture_number, 1.0, 1.0);
 			glPushMatrix();
 				glTranslated(0.0,1.5,0.0);
-				Draw_Rectangle(0.0,0.0,1.5,1.5, "y", 1, 1, 1.0, 1.0);
+				Draw_Rectangle(0.0,0.0,1.5,1.5, "y", 1, texture_number, 1.0, 1.0);
 			glPopMatrix();
-			Draw_Rectangle(0.0,0.0,1.5,15.0, "z", 0, 1, 1.0, 1.0);
+			Draw_Rectangle(0.0,0.0,1.5,15.0, "z", 0, texture_number, 1.0, 1.0);
 			glPushMatrix();
 				glTranslated(0.0,0.0,1.5);
-				Draw_Rectangle(0.0,0.0,1.5,15.0, "z", 1, 1, 1.0, 1.0);
+				Draw_Rectangle(0.0,0.0,1.5,15.0, "z", 1, texture_number, 1.0, 1.0);
 			glPopMatrix();
-			Draw_Rectangle(0.0,0.0,15.0,1.5, "x", 0, 1, 1.0, 1.0);
+			Draw_Rectangle(0.0,0.0,15.0,1.5, "x", 0, texture_number, 1.0, 1.0);
 			glPushMatrix();
 				glTranslated(1.5,0.0,0.0);
-				Draw_Rectangle(0.0,0.0,15.0,1.5, "x", 1, 1, 1.0, 1.0);
+				Draw_Rectangle(0.0,0.0,15.0,1.5, "x", 1, texture_number, 1.0, 1.0);
 			glPopMatrix();
 		glPopMatrix();
 	glPopMatrix();
 }
 
-void Scene::Draw_Floor()
+void Scene::Draw_Floor(unsigned int texture_number)
 {
-	Draw_Rectangle(-60.0,-60.0,60.0,60.0,"y", 1, 2, 10.0, 10.0);
+	Draw_Rectangle(-60.0,-60.0,60.0,60.0,"y", 1, texture_number, 10.0, 10.0);
 }
 
-void Scene::Draw_Table(){
+void Scene::Draw_Table(unsigned int texture_number){
 	glDisable(GL_CULL_FACE);
 	glPushMatrix();
 	glTranslated(0.0,-1.5,0.0);
 	glPushMatrix();
-		Draw_Rectangle(0.0,0.0,15.0,15.0, "y", 0, 1, 1.0, 1.0);
+		Draw_Rectangle(0.0,0.0,15.0,15.0, "y", 0, texture_number, 1.0, 1.0);
 		glPushMatrix();
 		glTranslated(0.0,1.5,0.0);
-		Draw_Rectangle(0.0,0.0,15.0,15.0, "y", 1, 1, 1.0, 1.0);
+		Draw_Rectangle(0.0,0.0,15.0,15.0, "y", 1, texture_number, 1.0, 1.0);
 		glPopMatrix();
-		Draw_Rectangle(0.0,0.0,15.0,1.5, "z", 0, 1, 1.0, 1.0);
+		Draw_Rectangle(0.0,0.0,15.0,1.5, "z", 0, texture_number, 1.0, 1.0);
 		glPushMatrix();
 		glTranslated(0.0,0.0,15.0);
-		Draw_Rectangle(0.0,0.0,15.0,1.5, "z", 1, 1, 1.0, 1.0);
+		Draw_Rectangle(0.0,0.0,15.0,1.5, "z", 1, texture_number, 1.0, 1.0);
 		glPopMatrix();
-		Draw_Rectangle(0.0,0.0,1.5,15.0, "x", 0, 1, 1.0, 1.0);
+		Draw_Rectangle(0.0,0.0,1.5,15.0, "x", 0, texture_number, 1.0, 1.0);
 		glPushMatrix();
 		glTranslated(15.0,0.0,0.0);
-		Draw_Rectangle(0.0,0.0,1.5,15.0, "x", 1, 1, 1.0, 1.0);
+		Draw_Rectangle(0.0,0.0,1.5,15.0, "x", 1, texture_number, 1.0, 1.0);
 		glPopMatrix();
 
 		glPushMatrix();
-			Draw_LegTable();
+			Draw_LegTable(texture_number);
 		glPopMatrix();
 
 		glPushMatrix();
 			glTranslated(13.5,0.0,13.5);
-			Draw_LegTable();
+			Draw_LegTable(texture_number);
 		glPopMatrix();
 
 		glPushMatrix();
 			glTranslated(13.5,0.0,0.0);
-			Draw_LegTable();
+			Draw_LegTable(texture_number);
 		glPopMatrix();
 
 		glPushMatrix();
 			glTranslated(0.0,0.0,13.5);
-			Draw_LegTable();
+			Draw_LegTable(texture_number);
 		glPopMatrix();
 	glPopMatrix();
 
