@@ -17,6 +17,10 @@
 #include "RGBpixmap.h"
 #include "LaigToProlog.h"
 #include "piece_bishop.h"
+#include "piece_king.h"
+#include "piece_queen.h"
+#include "piece_rook.h"
+#include "piece_knight.h"
 #include "Scene.h"
 #include <time.h>
 
@@ -32,6 +36,7 @@ using namespace std;
 float xy_aspect;
 int wireframe = 0;
 int freeRoam = 0;
+int drawaxis = 0;
 Scene scene;
 
 // Auxiliary matrix for the rotation button
@@ -71,6 +76,9 @@ int symb_light0_stacks =16;
 // Background ambient lighting
 float light_ambient[] = {0.2, 0.2, 0.2, 1.0};
 
+double delta_time = 0.1;
+
+
 // Window variables
 int main_window;
 GLUI  *glui2;
@@ -83,7 +91,32 @@ GLUI_Checkbox *check;
 #define IPADDRESS "127.0.0.1"
 #define PORT "60070"
 
+bool anime = false;
+
 vector<string> board;
+
+float white_piece[3]={0.9,1.0, 1.0};
+float black_piece[3]={0.0,0.0,0.0};
+
+// Pieces
+King White_King(0,5,white_piece);
+Queen White_Queen(0,4,white_piece);
+Bishop White_Bishop_1(0,3,white_piece);
+Bishop White_Bishop_2(0,6,white_piece);
+Knight White_Knight_1(0,2,white_piece);
+Knight White_Knight_2(0,7,white_piece);
+Rook White_Rook_1(0,1,white_piece);
+Rook White_Rook_2(0,8,white_piece);
+
+King Black_King(9,5,black_piece);
+Queen Black_Queen(9,4,black_piece);
+Bishop Black_Bishop_1(9,3,black_piece);
+Bishop Black_Bishop_2(9,6,black_piece);
+Knight Black_Knight_1(9,7,black_piece);
+Knight Black_Knight_2(9,2,black_piece);
+Rook Black_Rook_1(9,1,black_piece);
+Rook Black_Rook_2(9,8,black_piece);
+
 
 // Picking
 #define BUFSIZE 512
@@ -104,6 +137,8 @@ int floor_texture = 2;
 int table_texture = 1;
 int black_cell_texture = 5;
 int white_cell_texture = 4;
+
+//
 
 struct g_mouseState{
 	bool leftButton;
@@ -145,20 +180,116 @@ void BoardInicialize(){
     readBoardCheck(ans, board);
 }
 
-void animated(int x, int y, int newy, int newx){
+void move(GLuint idnewcel){
+
+
+		int newx = 0, newy = 0;
+		if(idnewcel>= 1 && idnewcel<= 64 ){
+			if(idnewcel>= 1 && idnewcel<= 8 ){
+				newy = idnewcel%8;
+				if(idnewcel%8 == 0) newy = 8;
+				newx = 1; 
+			}else if(idnewcel>= 9 && idnewcel<= 16){
+						newy = idnewcel%8;
+				if(idnewcel%8 == 0) newy = 8;
+				newx = 2; 
+
+			} else if(idnewcel>= 17 && idnewcel<= 24){
+				newx = 3; newy = idnewcel%8;
+				if(idnewcel%8 == 0) newy = 8;
+			} else if(idnewcel>= 25 && idnewcel<= 32){
+				newx = 4; newy = idnewcel%8;
+				if(idnewcel%8 == 0) newy = 8;
+			} else if(idnewcel>= 33 && idnewcel<= 40){
+				newx = 5; newy = idnewcel%8;
+				if(idnewcel%8 == 0) newy = 8;
+			}
+
+			cout << "COLOCADA -> " << idnewcel << endl;
+
+			White_Bishop_1.set_pos_x(newx);
+			White_Bishop_1.set_pos_y(newy);
+			anime = false;
+		}
+	
+}
+
+
+void Draw_Pieces(GLenum mode)
+{
+	unsigned int i = 65;
+
+	if(mode == GL_SELECT) glPushName(i++);
+	White_King.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+
+	if(mode == GL_SELECT) glPushName(i++);
+	White_Queen.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	White_Bishop_1.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	White_Bishop_2.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	White_Knight_1.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	White_Knight_2.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	White_Rook_1.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	White_Rook_2.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	Black_King.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	Black_Queen.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	Black_Bishop_1.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	Black_Bishop_2.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	Black_Knight_1.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	Black_Knight_2.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	Black_Rook_1.render(0.001);
+	if(mode == GL_SELECT) glPopName();
+
+	if(mode == GL_SELECT) glPushName(i++);
+	Black_Rook_2.render(0.001);
+	if(mode == GL_SELECT) glPopName();
 }
 
 void Draw_Scene(GLenum mode){
 
-	//glFrustum(-xy_aspect*.1, xy_aspect*.1, -0.1, 0.1, .1, 50.0);
 	glFrustum(-xy_aspect*.04, xy_aspect*.04, -.04, .04, .08, 500.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	//glTranslated(0.0,0.0,-25.0);
-	//glTranslatef(obj_pos[0], obj_pos[1], -obj_pos[2]);
-	//glRotated(20.0, 1.0,0.0,0.0);
-	//glRotated(-45.0, 0.0,1.0,0.0);
-	//glMultMatrixf(view_rotate);
 
 	scene_texture_change();
 	 unsigned int l = 1;
@@ -169,16 +300,14 @@ void Draw_Scene(GLenum mode){
         glRotated(20.0, 1.0,0.0,0.0);
 		glRotated(-45.0, 0.0,1.0,0.0);
         glMultMatrixf(view_rotate);
+
+	} else if(camera == 2){
+		gluLookAt(2.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	} else if(camera == 3){
+		gluLookAt(0.0, 15.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	} else if(camera == 4){
+		gluLookAt(0.0, 15.0, -10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	}
-		else if(camera == 2){
-			gluLookAt(2.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-		}
-			else if(camera == 3){
-				gluLookAt(0.0, 15.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-			}
-				else if(camera == 4){
-					gluLookAt(0.0, 15.0, -10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-				}
 
 	glPushMatrix();
     glPushMatrix();
@@ -189,8 +318,7 @@ void Draw_Scene(GLenum mode){
     glTranslated(-5.0,0.0,-6.0);
     scene.Draw_Board();
     int tex = 0;
-    for(int i = 0; i < sizeBoard; i++){
-                                
+    for(int i = 0; i < sizeBoard; i++){                            
         glTranslatef(-sizeBoard,0.0,1.0);
         for(int j = 0; j < sizeBoard; j++){        
             if((i%2) == 0){
@@ -200,17 +328,21 @@ void Draw_Scene(GLenum mode){
                     if(j%2 == 0) tex=black_cell_texture;
                     else tex=white_cell_texture;
             }
+
+			if(mode == GL_SELECT){
+				glLoadName(l);
+			}
                                                 
             glTranslatef(1.0,0.0,0.0);
             if(mode == GL_SELECT){
-                    glPushName(l);
+				glPushName(l);
             }
             scene.Draw_PositionBoard(tex);
             if(mode == GL_SELECT){
-                    glPopName();
+				glPopName();
             }
             if(mode == GL_SELECT){
-                    l++;
+				l++;
             }
         }
     }
@@ -226,7 +358,7 @@ void Draw_Scene(GLenum mode){
     glTranslated(-3.5,1.6,3.5);
 	glEnable(GL_COLOR_MATERIAL);
 	LoadDefaultMaterials();
-    scene.Draw_Pieces();
+	Draw_Pieces(mode);
 	glDisable(GL_COLOR_MATERIAL);
 	LoadDefaultMaterials();
     glPopMatrix();
@@ -243,15 +375,6 @@ void display(void){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	//glFrustum(-xy_aspect*.1, xy_aspect*.1, -0.1, 0.1, .1, 50.0);
-	/*glFrustum(-xy_aspect*.04, xy_aspect*.04, -.04, .04, .08, 500.0);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glTranslated(0.0,0.0,-25.0);
-	glTranslatef(obj_pos[0], obj_pos[1], -obj_pos[2]);
-	glRotated(20.0, 1.0,0.0,0.0);
-	glRotated(-45.0, 0.0,1.0,0.0);
-	glMultMatrixf(view_rotate);*/
 
 	// Activate the freeroaming buttons according to the user choice
 	if (freeRoam){
@@ -271,8 +394,8 @@ void display(void){
 
 	LoadDefaultMaterials();
 
-
-	//scene.Draw_Axis(glQ);
+	//if(drawaxis)
+	//	scene.Draw_Axis(glQ);
 
 
 	glDisable(GL_COLOR_MATERIAL);
@@ -287,6 +410,7 @@ void display(void){
 void pickingAction(GLuint answer) {
 	// Prints the picking action
 	printf("%d\n", answer);
+	move(answer);
 }
 
 void processHits (GLint hits, GLuint buffer[]) {
@@ -471,6 +595,8 @@ void initialization()
 	pixmap.setTexture(9);
 
 
+	//glutTimerFunc(10, move, 0);
+
 	// compile the display list, store a triangle in it
 
 		
@@ -486,6 +612,7 @@ void wireframeControl(int d){
 
 void f(){
 	quit();
+	exit(1);
 }
 
 int main(int argc, char* argv[]){
@@ -525,6 +652,7 @@ int main(int argc, char* argv[]){
 
 	glui2->add_checkbox("Wireframe",&wireframe,1,wireframeControl);
 	glui2->add_checkbox("FreeRoam",&freeRoam,-1,NULL);
+	glui2->add_checkbox("Axis",&drawaxis,-1,NULL);
 	glui2->add_column(false);
 
 	GLUI_Listbox *listbox = glui2->add_listbox("Cameras",&camera,-1,NULL);
