@@ -24,9 +24,7 @@ public:
 	void Draw_Floor(unsigned int texture_number);
 	void Draw_Table(unsigned int texture_number);
 	void Draw_impostors(unsigned int texture_number);
-	void Draw_Scene(GLenum mode);
 	void Draw_TablePoker(GLUquadric* glQ, unsigned int tex_tabl, unsigned int tex_topTable);
-	//void Draw_Pieces();
 };
 
 #endif
