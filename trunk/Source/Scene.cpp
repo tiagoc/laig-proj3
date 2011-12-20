@@ -214,6 +214,91 @@ void Scene::Draw_Floor(unsigned int texture_number)
 	Draw_Rectangle(-60.0,-60.0,60.0,60.0,"y", 1, texture_number, 10.0, 10.0);
 }
 
+void Scene::Draw_impostors(unsigned int texture_number){
+	glPushMatrix();
+		glPushMatrix();
+			glTranslated(0.0, 22.5, 60.0);
+			glRotated(90.0, 0.0,0.0,1.0);
+			Draw_Rectangle(40.0, 60.0, -40.0, -60.0, "z", 0 ,texture_number, -1.0, -1.0);
+		glPopMatrix();
+		
+		glPushMatrix();
+			glTranslated(0.0, 22.5, -60.0);
+			glRotated(180.0, 0.0, 1.0, 0.0);
+			glRotated(90.0, 0.0,0.0,1.0);
+			Draw_Rectangle(40.0, 60.0, -40.0, -60.0, "z", 0 ,texture_number-1, -1.0, -1.0);
+		glPopMatrix();
+		glPushMatrix();
+			glTranslated(-60.0, 22.5, 0.0);
+			glRotated(180.0, 0.0, 1.0, 0.0);
+			Draw_Rectangle(-40.0,-60.0, 40.0, 60.0, "x", 0 ,texture_number-1, 1.0, 1.0);
+		glPopMatrix();
+		glPushMatrix();
+			glTranslated(60.0, 22.5, 00.0);
+			Draw_Rectangle(-40.0, -60.0, 40.0, 60.0, "x", 0 ,texture_number, 1.0, 1.0);
+		glPopMatrix();
+	glPopMatrix();
+}
+
+void Scene::Draw_TablePoker(GLUquadric* glQ, unsigned int tex_tabl, unsigned int tex_topTable){
+	glPushMatrix();
+	glTranslated(-10.0, 0.0, -10.0);
+		glPushMatrix();
+			glEnable(GL_NORMALIZE);
+			glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, tex_tabl);
+			gluQuadricDrawStyle(glQ, GLU_FILL);
+			gluQuadricNormals(glQ,  GLU_SMOOTH);
+			gluQuadricOrientation(glQ,  GLU_OUTSIDE);
+			gluQuadricTexture(glQ, GL_TRUE);
+			glRotated(90.0, 1.0, 0.0, 0.0);
+			GLdouble plane[]={0.0,1.0,0.0,0.0};
+			glClipPlane(GL_CLIP_PLANE0, plane);
+			glEnable(GL_CLIP_PLANE0);
+			gluCylinder(glQ, 7.5, 7.5, 17.0, 60.0, 60.0);
+			glDisable(GL_CLIP_PLANE0);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslated(-7.5,-17.0,-15.0);
+			Draw_Rectangle(0.0, 0.0, 17.0, 17.0, "x", 0, tex_tabl, 1.0, 1.0);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslated(7.5,-17.0,0.0);
+			glRotated(180.0,0.0,1.0,0.0);
+			Draw_Rectangle(0.0, 0.0, 17.0, 17.0, "x", 0, tex_tabl, 1.0, 1.0);
+		glPopMatrix();
+
+		glPushMatrix();
+			glEnable(GL_NORMALIZE);
+			glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, tex_tabl);
+			gluQuadricDrawStyle(glQ, GLU_FILL);
+			gluQuadricNormals(glQ,  GLU_SMOOTH);
+			gluQuadricOrientation(glQ,  GLU_OUTSIDE);
+			gluQuadricTexture(glQ, GL_TRUE);
+			glTranslated(0.0,0.0,-15.0);
+			glRotated(180.0,0.0,1.0,0.0);
+			glRotated(90.0, 1.0, 0.0, 0.0);
+			glClipPlane(GL_CLIP_PLANE0, plane);
+			glEnable(GL_CLIP_PLANE0);
+			gluCylinder(glQ, 7.5, 7.5, 17.0, 60.0, 60.0);
+			glDisable(GL_CLIP_PLANE0);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslated(-7.5, 0.0, -22.5);
+			Draw_Rectangle(0.0,0.0, 3.0,30.0, "x", 1, tex_topTable, 1.0, 1.0);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslated(-7.5, 0.0, -22.5);
+			Draw_Rectangle(0.0,0.0, 15.0,30.0, "y", 1, tex_topTable, 1.0, 1.0);
+		glPopMatrix();
+	glPopMatrix();
+}
+
 void Scene::Draw_Table(unsigned int texture_number){
 	glDisable(GL_CULL_FACE);
 	glPushMatrix();

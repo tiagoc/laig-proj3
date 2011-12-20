@@ -159,16 +159,18 @@ void LoadDefaultMaterials()
 }
 
 void scene_texture_change(){
-        if (scene_texture==1){
-                floor_texture = 2;
-                table_texture = 1;
-                black_cell_texture = 5;
-                white_cell_texture = 4;}
-        else if(scene_texture==2){
-                floor_texture = 8;
-                table_texture = 9;
-                black_cell_texture = 6;
-                white_cell_texture = 7;}
+    if (scene_texture==1){
+        floor_texture = 2;
+        table_texture = 1;
+        black_cell_texture = 5;
+        white_cell_texture = 4;
+
+	}
+    else if(scene_texture==2){
+        floor_texture = 8;
+        table_texture = 9;
+        black_cell_texture = 6;
+        white_cell_texture = 7;}
 }
 
 void BoardInicialize(){
@@ -416,41 +418,42 @@ void Draw_Pieces(GLenum mode)
         if(mode == GL_SELECT) glPopName();
 }
 
+
 void Draw_Scene(GLenum mode){
 
-        glFrustum(-xy_aspect*.04, xy_aspect*.04, -.04, .04, .08, 500.0);
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-        glEnable(GL_COLOR_MATERIAL);
-        LoadDefaultMaterials();
+    glFrustum(-xy_aspect*.04, xy_aspect*.04, -.04, .04, .08, 500.0);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glEnable(GL_COLOR_MATERIAL);
+    LoadDefaultMaterials();
 
-        scene_texture_change();
-         unsigned int l = 1;
+    scene_texture_change();
+        unsigned int l = 1;
 
-        if(camera == 1){ 
-                glTranslated(0.0,0.0,-25.0);
-                glTranslatef(obj_pos[0], obj_pos[1], -obj_pos[2]);
-        glRotated(20.0, 1.0,0.0,0.0);
-                glRotated(-45.0, 0.0,1.0,0.0);
-        glMultMatrixf(view_rotate);
-                if(drawaxis) scene.Draw_Axis(glQ);
-        } else if(camera == 2){
-                gluLookAt(2.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-                if(drawaxis) scene.Draw_Axis(glQ);
-        } else if(camera == 3){
-                gluLookAt(0.0, 15.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-                if(drawaxis)
-                        scene.Draw_Axis(glQ);
-        } else if(camera == 4){
-                gluLookAt(0.0, 15.0, -10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-                if(drawaxis)
-                        scene.Draw_Axis(glQ);
-        }
+    if(camera == 1){ 
+            glTranslated(0.0,0.0,-25.0);
+            glTranslatef(obj_pos[0], obj_pos[1], -obj_pos[2]);
+    glRotated(20.0, 1.0,0.0,0.0);
+            glRotated(-45.0, 0.0,1.0,0.0);
+    glMultMatrixf(view_rotate);
+            if(drawaxis) scene.Draw_Axis(glQ);
+    } else if(camera == 2){
+            gluLookAt(2.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+            if(drawaxis) scene.Draw_Axis(glQ);
+    } else if(camera == 3){
+            gluLookAt(0.0, 15.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+            if(drawaxis)
+                    scene.Draw_Axis(glQ);
+    } else if(camera == 4){
+            gluLookAt(0.0, 15.0, -10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+            if(drawaxis)
+                    scene.Draw_Axis(glQ);
+    }
 
-        glDisable(GL_COLOR_MATERIAL);
-        LoadDefaultMaterials();
+    glDisable(GL_COLOR_MATERIAL);
+    LoadDefaultMaterials();
 
-        glPushMatrix();
+    glPushMatrix();
     glPushMatrix();
     glPushMatrix();
     glTranslated(0.0,-16.5,0.0);
@@ -486,6 +489,10 @@ void Draw_Scene(GLenum mode){
         scene.Draw_Table(table_texture);
     glPopMatrix();
 
+	glPushMatrix();
+		scene.Draw_impostors(12);
+	glPopMatrix();
+
     glPushMatrix();
     glTranslated(-3.5,1.6,3.5);
         glEnable(GL_COLOR_MATERIAL);
@@ -494,6 +501,13 @@ void Draw_Scene(GLenum mode){
         LoadDefaultMaterials();
         glDisable(GL_COLOR_MATERIAL);
     glPopMatrix();
+
+	glPushMatrix();
+		glEnable(GL_COLOR_MATERIAL);
+		glColor3d(1.0,1.0,1.0);
+		scene.Draw_TablePoker(glQ,13, 14);
+		glDisable(GL_COLOR_MATERIAL);
+	 glPopMatrix();
 
     glPopMatrix();
 
@@ -736,6 +750,17 @@ void initialization()
         pixmap.readBMPFile("Resources/piece_white_glow.bmp");
         pixmap.setTexture(10);
         
+        pixmap.readBMPFile("Resources/Poker2.bmp");
+        pixmap.setTexture(11);
+		
+        pixmap.readBMPFile("Resources/Poker1.bmp");
+        pixmap.setTexture(12);
+
+		pixmap.readBMPFile("Resources/woodPoker.bmp");
+        pixmap.setTexture(13);
+		
+        pixmap.readBMPFile("Resources/tablePoker.bmp");
+        pixmap.setTexture(14);
 
         //glutTimerFunc(10, move, 0);
 
