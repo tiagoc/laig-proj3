@@ -510,7 +510,7 @@ void Draw_Scene(GLenum mode){
 		glPushMatrix();
 			glEnable(GL_COLOR_MATERIAL);
 			glColor3d(0.6,0.6,0.6);
-			scene.Draw_TablePoker(glQ,13, 14);
+			scene.Draw_TablePoker(glQ, 13,14);
 			glDisable(GL_COLOR_MATERIAL);
 		glPopMatrix();
 	}
