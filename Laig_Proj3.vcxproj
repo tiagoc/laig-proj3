@@ -47,6 +47,7 @@
     <ClInclude Include="Source\RGBpixmap.h" />
     <ClInclude Include="Source\Scene.h" />
     <ClInclude Include="Source\Socket.h" />
+    <ClInclude Include="Source\Timer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{43375D8F-394F-4E46-9D6A-53EB77215EEF}</ProjectGuid>

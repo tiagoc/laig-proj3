@@ -22,7 +22,9 @@
 #include "piece_rook.h"
 #include "piece_knight.h"
 #include "Scene.h"
+#include <sstream>
 #include <time.h>
+#include "Timer.h"
 
 using namespace std;
 
@@ -38,6 +40,8 @@ int wireframe = 0;
 int freeRoam = 0;
 int drawaxis = 0;
 Scene scene;
+Time ti;
+
 
 // Auxiliary matrix for the rotation button
 float view_rotate[16] = {1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1};
@@ -120,11 +124,10 @@ Knight Black_Knight_2(9,2,black_piece);
 Rook Black_Rook_1(9,1,black_piece);
 Rook Black_Rook_2(9,8,black_piece);
 
-
 // Picking
 #define BUFSIZE 512
 GLuint selectBuf[BUFSIZE];
-unsigned int n = 0;
+//unsigned int n = 0;
 
 SOCKET *ms;
 
@@ -189,7 +192,7 @@ void BoardInicialize(){
 
 bool moved_white_pieces[8]={0,0,0,0,0,0,0,0};
 bool moved_black_pieces[8]={0,0,0,0,0,0,0,0};
-bool board_cells[64]=	{0,0,0,0,0,0,0,0,
+bool board_cells[64]=  {0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,
@@ -234,6 +237,7 @@ void calculate_new_cell(GLuint idnewcel){
 		newx=1;
 		newy=idnewcel-56;}
 }
+
 
 void move(GLuint idnewcel){
 
@@ -309,15 +313,16 @@ void move(GLuint idnewcel){
 	}
 	if(piece== 77){
 		calculate_new_cell(idnewcel);
-        Black_Knight_1.set_pos_x(newx);
-        Black_Knight_1.set_pos_y(newy);
+        Black_Knight_2.set_pos_x(newx);
+        Black_Knight_2.set_pos_y(newy);
 		selectCell=false;
 		selectPiece=false;
 	}
 	if(piece== 78){
 		calculate_new_cell(idnewcel);
-        Black_Knight_2.set_pos_x(newx);
-        Black_Knight_2.set_pos_y(newy);
+		Black_Knight_1.set_pos_x(newx);
+        Black_Knight_1.set_pos_y(newy);
+        
 		selectCell=false;
 		selectPiece=false;
 	}
@@ -519,6 +524,11 @@ void Draw_Scene(GLenum mode){
 
 }
 
+void timeCount(int d){
+	ti.increment();
+	glutTimerFunc(30000, timeCount, 0);
+}
+
 void display(void){
 
         glQ = gluNewQuadric();
@@ -528,6 +538,8 @@ void display(void){
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
 
+
+		timeCount(1);
         // Activate the freeroaming buttons according to the user choice
         if (freeRoam){
                 view_rot->enable();
@@ -550,7 +562,22 @@ void display(void){
         glDisable(GL_COLOR_MATERIAL);
         LoadDefaultMaterials();
 
+
         Draw_Scene(GL_RENDER);
+
+		//TIMERRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+		string time = ti.getTime();
+		cout << time <<endl;
+		glPushMatrix();
+		glColor3d(255, 255, 255);             
+        glRasterPos3f(10, 5, 0);
+        for (unsigned i = 0; i < time.size(); ++i) {
+			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, time[i]);
+        }
+
+        glPopMatrix();
+
+	
 
         glutSwapBuffers();
         glFlush();
@@ -773,6 +800,8 @@ void initialization()
 		
         pixmap.readBMPFile("Resources/vulcao2.bmp");
         pixmap.setTexture(16);
+
+		glutTimerFunc(1000, timeCount, 0);
 
         //glutTimerFunc(10, move, 0);
 
