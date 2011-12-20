@@ -1,11 +1,11 @@
 /****************************************************************/
-/*                                        LAIG - Third Project                                    */
-/*                                                                                                                                */
-/*                                                                                                                                */
-/*                        Damien Rosa                                        Tiago Cruzeiro                        */
-/*                                ei09093                                                ei09044                                */
-/*                                                                                                                                */
-/*                                                                                                                                */
+/*                     LAIG - Third Project                     */
+/*                                                              */
+/*                                                              */
+/*        Damien Rosa                   Tiago Cruzeiro          */
+/*         ei09093                         ei09044              */
+/*                                                              */
+/*                                                              */
 /****************************************************************/
 
 #pragma once
@@ -40,7 +40,7 @@ int drawaxis = 0;
 Scene scene;
 
 // Auxiliary matrix for the rotation button
-float view_rotate[16] =        {1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1};
+float view_rotate[16] = {1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1};
 
 // Auxiliary vector used by the zoom button
 float obj_pos[] = { 0.0, 0.0, 0.0 };
@@ -234,69 +234,115 @@ void move(GLuint idnewcel){
 	if(piece== 71){
 		calculate_new_cell(idnewcel);
         White_Rook_1.set_pos_x(newx);
-        White_Rook_1.set_pos_y(newy);}
+        White_Rook_1.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 72){
 		calculate_new_cell(idnewcel);
         White_Rook_2.set_pos_x(newx);
-        White_Rook_2.set_pos_y(newy);}
+        White_Rook_2.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 69){
 		calculate_new_cell(idnewcel);
         White_Knight_1.set_pos_x(newx);
-        White_Knight_1.set_pos_y(newy);}
+        White_Knight_1.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 70){
 		calculate_new_cell(idnewcel);
         White_Knight_2.set_pos_x(newx);
-        White_Knight_2.set_pos_y(newy);}
+        White_Knight_2.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 67){
 		calculate_new_cell(idnewcel);
         White_Bishop_1.set_pos_x(newx);
-        White_Bishop_1.set_pos_y(newy);}
+        White_Bishop_1.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 68){
 		calculate_new_cell(idnewcel);
         White_Bishop_2.set_pos_x(newx);
-        White_Bishop_2.set_pos_y(newy);}
+        White_Bishop_2.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 66){
 		calculate_new_cell(idnewcel);
         White_Queen.set_pos_x(newx);
-        White_Queen.set_pos_y(newy);}
+        White_Queen.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 65){
 		calculate_new_cell(idnewcel);
         White_King.set_pos_x(newx);
-        White_King.set_pos_y(newy);}
-
+        White_King.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 80){
 		calculate_new_cell(idnewcel);
-        Black_Rook_1.set_pos_x(newx);
-        Black_Rook_1.set_pos_y(newy);}
+		Black_Rook_2.set_pos_x(newx);
+        Black_Rook_2.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 79){
 		calculate_new_cell(idnewcel);
-        Black_Rook_2.set_pos_x(newx);
-        Black_Rook_2.set_pos_y(newy);}
+        Black_Rook_1.set_pos_x(newx);
+        Black_Rook_1.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 77){
 		calculate_new_cell(idnewcel);
         Black_Knight_1.set_pos_x(newx);
-        Black_Knight_1.set_pos_y(newy);}
+        Black_Knight_1.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 78){
 		calculate_new_cell(idnewcel);
         Black_Knight_2.set_pos_x(newx);
-        Black_Knight_2.set_pos_y(newy);}
+        Black_Knight_2.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 76){
 		calculate_new_cell(idnewcel);
         Black_Bishop_1.set_pos_x(newx);
-        Black_Bishop_1.set_pos_y(newy);}
+        Black_Bishop_1.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 75){
 		calculate_new_cell(idnewcel);
-		calculate_new_cell(idnewcel);
         Black_Bishop_2.set_pos_x(newx);
-        Black_Bishop_2.set_pos_y(newy);}
+        Black_Bishop_2.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 74){
 		calculate_new_cell(idnewcel);
         Black_Queen.set_pos_x(newx);
-        Black_Queen.set_pos_y(newy);}
+        Black_Queen.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 	if(piece== 73){
 		calculate_new_cell(idnewcel);
         Black_King.set_pos_x(newx);
-        Black_King.set_pos_y(newy);}
+        Black_King.set_pos_y(newy);
+		selectCell=false;
+		selectPiece=false;
+	}
 }
 
 
@@ -387,12 +433,10 @@ void Draw_Scene(GLenum mode){
         glRotated(20.0, 1.0,0.0,0.0);
                 glRotated(-45.0, 0.0,1.0,0.0);
         glMultMatrixf(view_rotate);
-                if(drawaxis)
-                        scene.Draw_Axis(glQ);
+                if(drawaxis) scene.Draw_Axis(glQ);
         } else if(camera == 2){
                 gluLookAt(2.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-                if(drawaxis)
-                        scene.Draw_Axis(glQ);
+                if(drawaxis) scene.Draw_Axis(glQ);
         } else if(camera == 3){
                 gluLookAt(0.0, 15.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
                 if(drawaxis)
@@ -420,24 +464,18 @@ void Draw_Scene(GLenum mode){
         glTranslatef(-sizeBoard,0.0,1.0);
         for(int j = 0; j < sizeBoard; j++){        
             if((i%2) == 0){
-                                if(j%2 == 0) tex=white_cell_texture;
-                    else tex=black_cell_texture;
+				if(j%2 == 0) tex=white_cell_texture;
+                else tex=black_cell_texture;
             } else {
-                    if(j%2 == 0) tex=black_cell_texture;
-                    else tex=white_cell_texture;
+                if(j%2 == 0) tex=black_cell_texture;
+                else tex=white_cell_texture;
             }
                                                 
             glTranslatef(1.0,0.0,0.0);
-            if(mode == GL_SELECT){
-                                glPushName(l);
-            }
+            if(mode == GL_SELECT){ glPushName(l); }
             scene.Draw_PositionBoard(tex);
-            if(mode == GL_SELECT){
-                                glPopName();
-            }
-            if(mode == GL_SELECT){
-                                l++;
-            }
+            if(mode == GL_SELECT){ glPopName();}
+            if(mode == GL_SELECT){ l++; }
         }
     }
     glPopMatrix();
@@ -511,7 +549,7 @@ void pickingAction(GLuint answer) {
         }
 
         if(selectCell && selectPiece)
-                move(answer);
+			move(answer);
 }
 
 void processHits (GLint hits, GLuint buffer[]) {
