@@ -242,7 +242,8 @@ void Scene::Draw_impostors(unsigned int texture_number){
 
 void Scene::Draw_TablePoker(GLUquadric* glQ, unsigned int tex_tabl, unsigned int tex_topTable){
 	glPushMatrix();
-	glTranslated(-10.0, 0.0, -10.0);
+	glTranslated(-35.0, 0.0, -25.0);
+	glRotated(-45.0, 0.0, 1.0, 0.0);
 		glPushMatrix();
 			glEnable(GL_NORMALIZE);
 			glEnable(GL_TEXTURE_2D);
@@ -288,13 +289,31 @@ void Scene::Draw_TablePoker(GLUquadric* glQ, unsigned int tex_tabl, unsigned int
 		glPopMatrix();
 
 		glPushMatrix();
-			glTranslated(-7.5, 0.0, -22.5);
-			Draw_Rectangle(0.0,0.0, 3.0,30.0, "x", 1, tex_topTable, 1.0, 1.0);
+			glTranslated(-7.525, -2.0, -22.5);
+			Draw_Rectangle(0.0,0.0, 2.0,30.0, "x", 1, tex_topTable, 1.0, 1.0);
 		glPopMatrix();
 
 		glPushMatrix();
+			glTranslated(7.525, -2.0, 7.5);
+			glRotated(180.0, 0.0, 1.0, 0.0);
+			Draw_Rectangle(0.0,0.0, 2.0,30.0, "x", 1, tex_topTable, 1.0, 1.0);
+		glPopMatrix();
+
+			glPushMatrix();
+			glTranslated(-7.525, -2.0, -22.5);
+			Draw_Rectangle(0.0,0.0, 15.0,2.0, "z", 1, tex_topTable, 1.0, 1.0);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslated(7.525, -2.0, 7.5);
+			glRotated(180.0, 0.0, 1.0, 0.0);
+			Draw_Rectangle(0.0,0.0, 15.0,2.0, "z", 1, tex_topTable, 1.0, 1.0);
+		glPopMatrix();
+
+
+		glPushMatrix();
 		glTranslated(-7.5, 0.0, -22.5);
-			Draw_Rectangle(0.0,0.0, 15.0,30.0, "y", 1, tex_topTable, 1.0, 1.0);
+			Draw_Rectangle(0.0,0.0, 15.5,30, "y", 1, tex_topTable, 1.0, 1.0);
 		glPopMatrix();
 	glPopMatrix();
 }

@@ -140,6 +140,8 @@ int floor_texture = 2;
 int table_texture = 1;
 int black_cell_texture = 5;
 int white_cell_texture = 4;
+int impostors_texture = 12;
+
 
 struct g_mouseState{
         bool leftButton;
@@ -164,13 +166,15 @@ void scene_texture_change(){
         table_texture = 1;
         black_cell_texture = 5;
         white_cell_texture = 4;
-
+		impostors_texture = 12;
 	}
     else if(scene_texture==2){
         floor_texture = 8;
         table_texture = 9;
         black_cell_texture = 6;
-        white_cell_texture = 7;}
+        white_cell_texture = 7;
+		impostors_texture= 16;
+	}
 }
 
 void BoardInicialize(){
@@ -490,7 +494,7 @@ void Draw_Scene(GLenum mode){
     glPopMatrix();
 
 	glPushMatrix();
-		scene.Draw_impostors(12);
+		scene.Draw_impostors(impostors_texture);
 	glPopMatrix();
 
     glPushMatrix();
@@ -502,12 +506,14 @@ void Draw_Scene(GLenum mode){
         glDisable(GL_COLOR_MATERIAL);
     glPopMatrix();
 
-	glPushMatrix();
-		glEnable(GL_COLOR_MATERIAL);
-		glColor3d(1.0,1.0,1.0);
-		scene.Draw_TablePoker(glQ,13, 14);
-		glDisable(GL_COLOR_MATERIAL);
-	 glPopMatrix();
+	if (scene_texture==1){
+		glPushMatrix();
+			glEnable(GL_COLOR_MATERIAL);
+			glColor3d(0.6,0.6,0.6);
+			scene.Draw_TablePoker(glQ,13, 14);
+			glDisable(GL_COLOR_MATERIAL);
+		glPopMatrix();
+	}
 
     glPopMatrix();
 
@@ -761,6 +767,12 @@ void initialization()
 		
         pixmap.readBMPFile("Resources/tablePoker.bmp");
         pixmap.setTexture(14);
+
+		pixmap.readBMPFile("Resources/Vulcao1.bmp");
+        pixmap.setTexture(15);
+		
+        pixmap.readBMPFile("Resources/vulcao2.bmp");
+        pixmap.setTexture(16);
 
         //glutTimerFunc(10, move, 0);
 
