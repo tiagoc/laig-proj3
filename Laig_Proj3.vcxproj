@@ -31,13 +31,17 @@
     <None Include="Resources\marble_red.bmp" />
     <None Include="Resources\piece_black.bmp" />
     <None Include="Resources\piece_white.bmp" />
+    <None Include="Resources\Poker1.bmp" />
+    <None Include="Resources\Poker2.bmp" />
     <None Include="Resources\stone.bmp" />
+    <None Include="Resources\tablePoker.bmp" />
+    <None Include="Resources\Vulcao1.bmp" />
+    <None Include="Resources\vulcao2.bmp" />
+    <None Include="Resources\woodPoker.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Auxiliary.h" />
-    <ClInclude Include="Source\Cell.h" />
     <ClInclude Include="Source\Debug.h" />
-    <ClInclude Include="Source\Jogador.h" />
     <ClInclude Include="Source\LaigToProlog.h" />
     <ClInclude Include="Source\piece_bishop.h" />
     <ClInclude Include="Source\piece_king.h" />

@@ -894,8 +894,3 @@ void Rook::render (float scale)
 	glPopMatrix();
 	glPopMatrix();
 }
-
-void Rook::animate(unsigned int pos_x_init, unsigned int pos_y_init, unsigned int pos_x_new, unsigned int pos_y_new){
-	this->pos_x=pos_x_new;
-	this->pos_y=pos_y_new;
-}

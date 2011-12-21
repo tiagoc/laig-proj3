@@ -14,30 +14,7 @@ int axis_nstacks = 1;
 double orig_radius = 0.5;
 int orig_slices = 8;
 int orig_stacks = 16;
-/*
-float white_piece[3]={0.9,1.0,1.0};
-float black_piece[3]={0.0,0.0,0.0};
 
-
-// Pieces
-King White_King(1,5,white_piece);
-Queen White_Queen(1,4,white_piece);
-Bishop White_Bishop_1(1,3,white_piece);
-Bishop White_Bishop_2(1,6,white_piece);
-Knight White_Knight_1(1,2,white_piece);
-Knight White_Knight_2(1,7,white_piece);
-Rook White_Rook_1(1,1,white_piece);
-Rook White_Rook_2(1,8,white_piece);
-
-King Black_King(8,5,black_piece);
-Queen Black_Queen(8,4,black_piece);
-Bishop Black_Bishop_1(8,3,black_piece);
-Bishop Black_Bishop_2(8,6,black_piece);
-Knight Black_Knight_1(8,7,black_piece);
-Knight Black_Knight_2(8,2,black_piece);
-Rook Black_Rook_1(8,1,black_piece);
-Rook Black_Rook_2(8,8,black_piece);
-*/
 
 void Scene::Draw_Axis(GLUquadric* glQ){
 
@@ -362,25 +339,3 @@ void Scene::Draw_Table(unsigned int texture_number){
 	glPopMatrix();
 	glEnable(GL_CULL_FACE);
 }
-
-/*
-void Scene::Draw_Pieces()
-{
-	White_King.render(0.001);
-	White_Queen.render(0.001);
-	White_Bishop_1.render(0.001);
-	White_Bishop_2.render(0.001);
-	White_Knight_1.render(0.001);
-	White_Knight_2.render(0.001);
-	White_Rook_1.render(0.001);
-	White_Rook_2.render(0.001);
-
-	Black_King.render(0.001);
-	Black_Queen.render(0.001);
-	Black_Bishop_1.render(0.001);
-	Black_Bishop_2.render(0.001);
-	Black_Knight_1.render(0.001);
-	Black_Knight_2.render(0.001);
-	Black_Rook_1.render(0.001);
-	Black_Rook_2.render(0.001);
-}*/

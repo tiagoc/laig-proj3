@@ -71,6 +71,24 @@
     <None Include="Resources\stone.bmp">
       <Filter>Resources</Filter>
     </None>
+    <None Include="Resources\Poker1.bmp">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\Poker2.bmp">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\tablePoker.bmp">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\Vulcao1.bmp">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\vulcao2.bmp">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="Resources\woodPoker.bmp">
+      <Filter>Resources</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\RGBpixmap.h">
@@ -101,12 +119,6 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Socket.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Jogador.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Cell.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Debug.h">
