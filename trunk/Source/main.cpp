@@ -42,7 +42,6 @@ int drawaxis = 0;
 Scene scene;
 Time ti;
 
-
 // Auxiliary matrix for the rotation button
 float view_rotate[16] = {1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1};
 
@@ -81,7 +80,6 @@ int symb_light0_stacks =16;
 float light_ambient[] = {0.2, 0.2, 0.2, 1.0};
 
 double delta_time = 0.1;
-
 
 // Window variables
 int main_window;
@@ -145,7 +143,6 @@ int black_cell_texture = 5;
 int white_cell_texture = 4;
 int impostors_texture = 12;
 
-
 struct g_mouseState{
         bool leftButton;
         bool rightButton;
@@ -172,10 +169,10 @@ void scene_texture_change(){
 		impostors_texture = 12;
 	}
     else if(scene_texture==2){
-        floor_texture = 8;
-        table_texture = 9;
-        black_cell_texture = 6;
-        white_cell_texture = 7;
+		floor_texture = 8;
+		table_texture = 9;
+		black_cell_texture = 6;
+		white_cell_texture = 7;
 		impostors_texture= 16;
 	}
 }
@@ -237,7 +234,6 @@ void calculate_new_cell(GLuint idnewcel){
 		newx=1;
 		newy=idnewcel-56;}
 }
-
 
 void move(GLuint idnewcel){
 
@@ -359,74 +355,82 @@ void move(GLuint idnewcel){
 
 void Draw_Pieces(GLenum mode)
 {
-        unsigned int i = 65;
+    unsigned int i = 65;
 
-        if(mode == GL_SELECT) glPushName(i++);
-        White_King.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    White_King.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
+    if(mode == GL_SELECT) glPushName(i++);
+    White_Queen.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        White_Queen.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    White_Bishop_1.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        White_Bishop_1.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    White_Bishop_2.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        White_Bishop_2.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    White_Knight_1.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        White_Knight_1.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    White_Knight_2.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        White_Knight_2.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    White_Rook_1.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        White_Rook_1.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    White_Rook_2.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        White_Rook_2.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    Black_King.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        Black_King.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    Black_Queen.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        Black_Queen.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    Black_Bishop_1.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        Black_Bishop_1.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    Black_Bishop_2.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        Black_Bishop_2.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    Black_Knight_1.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        Black_Knight_1.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    Black_Knight_2.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        Black_Knight_2.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    Black_Rook_1.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 
-        if(mode == GL_SELECT) glPushName(i++);
-        Black_Rook_1.render(0.001);
-        if(mode == GL_SELECT) glPopName();
-
-        if(mode == GL_SELECT) glPushName(i++);
-        Black_Rook_2.render(0.001);
-        if(mode == GL_SELECT) glPopName();
+    if(mode == GL_SELECT) glPushName(i++);
+    Black_Rook_2.render(0.001);
+    if(mode == GL_SELECT) glPopName();
 }
 
+void timer(){
+	string time = ti.getTime();
+	glPushMatrix();
+	glColor3f(1, 1, 0);             
+	glRasterPos3f(5, 5, 0);
+	for (unsigned i = 0; i < time.size(); ++i) {
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, time[i]);
+	}
+}
 
 void Draw_Scene(GLenum mode){
 
@@ -437,26 +441,28 @@ void Draw_Scene(GLenum mode){
     LoadDefaultMaterials();
 
     scene_texture_change();
-        unsigned int l = 1;
+    unsigned int l = 1;
 
     if(camera == 1){ 
-            glTranslated(0.0,0.0,-25.0);
-            glTranslatef(obj_pos[0], obj_pos[1], -obj_pos[2]);
-    glRotated(20.0, 1.0,0.0,0.0);
-            glRotated(-45.0, 0.0,1.0,0.0);
-    glMultMatrixf(view_rotate);
-            if(drawaxis) scene.Draw_Axis(glQ);
+        glTranslated(0.0,0.0,-25.0);
+        glTranslatef(obj_pos[0], obj_pos[1], -obj_pos[2]);
+		glRotated(20.0, 1.0,0.0,0.0);
+        glRotated(-45.0, 0.0,1.0,0.0);
+		glMultMatrixf(view_rotate);
+        if(drawaxis) scene.Draw_Axis(glQ);
+		timer();
     } else if(camera == 2){
-            gluLookAt(2.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-            if(drawaxis) scene.Draw_Axis(glQ);
+        gluLookAt(2.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+        if(drawaxis) scene.Draw_Axis(glQ);
+		timer();
     } else if(camera == 3){
-            gluLookAt(0.0, 15.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-            if(drawaxis)
-                    scene.Draw_Axis(glQ);
+        gluLookAt(0.0, 15.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+        if(drawaxis) scene.Draw_Axis(glQ);
+		timer();
     } else if(camera == 4){
-            gluLookAt(0.0, 15.0, -10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-            if(drawaxis)
-                    scene.Draw_Axis(glQ);
+        gluLookAt(0.0, 15.0, -10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+        if(drawaxis) scene.Draw_Axis(glQ);
+		timer();
     }
 
     glDisable(GL_COLOR_MATERIAL);
@@ -531,97 +537,83 @@ void timeCount(int d){
 
 void display(void){
 
-        glQ = gluNewQuadric();
+    glQ = gluNewQuadric();
 
-        // Necessary initializations for the tranformation buttons, default view, etc
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-
-
-		timeCount(1);
-        // Activate the freeroaming buttons according to the user choice
-        if (freeRoam){
-                view_rot->enable();
-                trans_z->enable();
-                trans_xy->enable();
-        }else {
-                view_rot->disable();
-                trans_z->disable();
-                trans_xy->disable();
-        }
-
-        glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
-        glEnable(GL_COLOR_MATERIAL);
-
-        gluQuadricOrientation(glQ, GLU_OUTSIDE);
-
-        LoadDefaultMaterials();
+    // Necessary initializations for the tranformation buttons, default view, etc
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
 
 
-        glDisable(GL_COLOR_MATERIAL);
-        LoadDefaultMaterials();
+	timeCount(1);
+    // Activate the freeroaming buttons according to the user choice
+    if (freeRoam){
+            view_rot->enable();
+            trans_z->enable();
+            trans_xy->enable();
+    }else {
+            view_rot->disable();
+            trans_z->disable();
+            trans_xy->disable();
+    }
 
+    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+    glEnable(GL_COLOR_MATERIAL);
 
-        Draw_Scene(GL_RENDER);
+    gluQuadricOrientation(glQ, GLU_OUTSIDE);
 
-		//TIMERRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-		string time = ti.getTime();
-		cout << time <<endl;
-		glPushMatrix();
-		glColor3d(255, 255, 255);             
-        glRasterPos3f(10, 5, 0);
-        for (unsigned i = 0; i < time.size(); ++i) {
-			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, time[i]);
-        }
+    LoadDefaultMaterials();
 
-        glPopMatrix();
+    glDisable(GL_COLOR_MATERIAL);
+    LoadDefaultMaterials();
 
-	
+    Draw_Scene(GL_RENDER);
 
-        glutSwapBuffers();
-        glFlush();
+    glPopMatrix();
+
+    glutSwapBuffers();
+    glFlush();
 }
         
 void pickingAction(GLuint answer) {
-        // Prints the picking action
-        printf("%d\n", answer);
-        if(answer >= 1 && answer <= 64){
-                selectCell=true;
-        }
+    // Prints the picking action
+    printf("%d\n", answer);
+    if(answer >= 1 && answer <= 64){
+            selectCell=true;
+    }
 
-        if(answer >= 65 && answer <= 80){
-                selectPiece=true;
-                piece = answer;
-        }
+    if(answer >= 65 && answer <= 80){
+            selectPiece=true;
+            piece = answer;
+    }
 
-        if(selectCell && selectPiece)
-			move(answer);
+    if(selectCell && selectPiece)
+		move(answer);
 }
 
 void processHits (GLint hits, GLuint buffer[]) {
 
-        GLuint *ptr = buffer;
-        GLuint mindepth = 0xFFFFFFFF;
-        GLuint *answer=NULL;
-        GLuint nn;
+    GLuint *ptr = buffer;
+    GLuint mindepth = 0xFFFFFFFF;
+    GLuint *answer=NULL;
+    GLuint nn;
 
-        for (int i=0;i<hits;i++) {
-                int num = *ptr; ptr++;
-                GLuint z1 = *ptr; ptr++;
-                ptr++;
-                if (z1 < mindepth && num>0) {
-                        mindepth = z1;
-                        answer = ptr;
-                        nn=num;
-                }
-                for (int j=0; j < num; j++) 
-                        ptr++;
-        }
+    for (int i=0;i<hits;i++) {
+            int num = *ptr; ptr++;
+            GLuint z1 = *ptr; ptr++;
+            ptr++;
+            if (z1 < mindepth && num>0) {
+                    mindepth = z1;
+                    answer = ptr;
+                    nn=num;
+            }
+            for (int j=0; j < num; j++) 
+                    ptr++;
+    }
 
-        if (answer!=NULL) {
-                pickingAction(*answer);
-        }
+    if (answer!=NULL) {
+            pickingAction(*answer);
+    }
 }
 
 void processMouse(int button, int state, int x, int y) {
@@ -653,30 +645,30 @@ void processMouse(int button, int state, int x, int y) {
         MouseState.y = y;
         
         if (MouseState.leftButton && !MouseState.rightButton && !MouseState.middleButton) {
-                /* obrigatorio para o picking */
-                // obter o viewport actual
-                glGetIntegerv(GL_VIEWPORT, viewport);
+            /* obrigatorio para o picking */
+            // obter o viewport actual
+            glGetIntegerv(GL_VIEWPORT, viewport);
 
-                glSelectBuffer (BUFSIZE, selectBuf);
-                glRenderMode (GL_SELECT);
+            glSelectBuffer (BUFSIZE, selectBuf);
+            glRenderMode (GL_SELECT);
 
-                // inicia processo de picking
-                glInitNames();
-                glMatrixMode (GL_PROJECTION);
-                glPushMatrix ();
+            // inicia processo de picking
+            glInitNames();
+            glMatrixMode (GL_PROJECTION);
+            glPushMatrix ();
 
-                //  cria uma região de 5x5 pixels em torno do click do rato para o processo de picking
-                glLoadIdentity ();
-                gluPickMatrix ((GLdouble) x, (GLdouble) (DIMY - y), 1.0, 1.0, viewport);
+            //  cria uma região de 5x5 pixels em torno do click do rato para o processo de picking
+            glLoadIdentity ();
+            gluPickMatrix ((GLdouble) x, (GLdouble) (DIMY - y), 1.0, 1.0, viewport);
 
-                Draw_Scene(GL_SELECT);
+            Draw_Scene(GL_SELECT);
 
-                glMatrixMode (GL_PROJECTION);
-                glPopMatrix ();
-                glFlush ();
+            glMatrixMode (GL_PROJECTION);
+            glPopMatrix ();
+            glFlush ();
 
-                hits = glRenderMode(GL_RENDER);
-                processHits(hits, selectBuf);
+            hits = glRenderMode(GL_RENDER);
+            processHits(hits, selectBuf);
         }
 }
 
@@ -692,13 +684,13 @@ void processPassiveMouseMoved(int x, int y)
 
 void reshape(int w, int h)
 {
-        int tx, ty, tw, th;
+    int tx, ty, tw, th;
 
-        GLUI_Master.get_viewport_area( &tx, &ty, &tw, &th );
-        glViewport( tx, ty, tw, th );
-        xy_aspect = (float)tw / (float)th;
+    GLUI_Master.get_viewport_area( &tx, &ty, &tw, &th );
+    glViewport( tx, ty, tw, th );
+    xy_aspect = (float)tw / (float)th;
 
-        glutPostRedisplay();
+    glutPostRedisplay();
 }
 
 void keyboard(unsigned char key, int x, int y)
@@ -809,82 +801,82 @@ void initialization()
 }
 
 void wireframeControl(int d){
-        if(wireframe)
-                glPolygonMode(GL_FRONT, GL_LINE );
-        else
-                glPolygonMode(GL_FRONT, GL_FILL);
+    if(wireframe)
+            glPolygonMode(GL_FRONT, GL_LINE );
+    else
+            glPolygonMode(GL_FRONT, GL_FILL);
 }
 
 void f(){
-        quit();
-        exit(1);
+    quit();
+    exit(1);
 }
 
 int main(int argc, char* argv[]){
 
-        socketConnect(IPADDRESS, PORT);
-        atexit(f);
-        glutInit(&argc, argv);
-        glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-        glutInitWindowSize (DIMX, DIMY);
-        glutInitWindowPosition (INITIALPOS_X, INITIALPOS_Y);
-        main_window = glutCreateWindow (argv[0]);
+    socketConnect(IPADDRESS, PORT);
+    atexit(f);
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+    glutInitWindowSize (DIMX, DIMY);
+    glutInitWindowPosition (INITIALPOS_X, INITIALPOS_Y);
+    main_window = glutCreateWindow (argv[0]);
  
-        glutDisplayFunc(display);
-        GLUI_Master.set_glutReshapeFunc(reshape);
-        GLUI_Master.set_glutKeyboardFunc (keyboard);
-        GLUI_Master.set_glutMouseFunc(processMouse);
-        glutMotionFunc(processMouseMoved);
-        glutPassiveMotionFunc(processPassiveMouseMoved);   
-        GLUI_Master.set_glutSpecialFunc(NULL);
+    glutDisplayFunc(display);
+    GLUI_Master.set_glutReshapeFunc(reshape);
+    GLUI_Master.set_glutKeyboardFunc (keyboard);
+    GLUI_Master.set_glutMouseFunc(processMouse);
+    glutMotionFunc(processMouseMoved);
+    glutPassiveMotionFunc(processPassiveMouseMoved);   
+    GLUI_Master.set_glutSpecialFunc(NULL);
    
-        /*** Create the bottom subwindow ***/
-        glui2 = GLUI_Master.create_glui_subwindow(main_window, GLUI_SUBWINDOW_BOTTOM);
-        glui2->set_main_gfx_window(main_window);
+    /*** Create the bottom subwindow ***/
+    glui2 = GLUI_Master.create_glui_subwindow(main_window, GLUI_SUBWINDOW_BOTTOM);
+    glui2->set_main_gfx_window(main_window);
 
-        view_rot = glui2->add_rotation("Rotacao", view_rotate);
-        view_rot->set_spin(1.0);
-        glui2->add_column(false);
+    view_rot = glui2->add_rotation("Rotacao", view_rotate);
+    view_rot->set_spin(1.0);
+    glui2->add_column(false);
 
-        trans_z = glui2->add_translation("Zoom", GLUI_TRANSLATION_Z, &obj_pos[2]);
-        trans_z->set_speed(.02);
+    trans_z = glui2->add_translation("Zoom", GLUI_TRANSLATION_Z, &obj_pos[2]);
+    trans_z->set_speed(.02);
 
-        glui2->add_column(false);        
+    glui2->add_column(false);        
 
-        trans_xy = glui2->add_translation("Pan", GLUI_TRANSLATION_XY, &obj_pos[0]);
+    trans_xy = glui2->add_translation("Pan", GLUI_TRANSLATION_XY, &obj_pos[0]);
 
-        glui2->add_column(false);        
+    glui2->add_column(false);        
 
-        glui2->add_checkbox("Wireframe",&wireframe,1,wireframeControl);
-        glui2->add_checkbox("FreeRoam",&freeRoam,-1,NULL);
-        glui2->add_checkbox("Axis",&drawaxis,-1,NULL);
-        glui2->add_column(false);
+    glui2->add_checkbox("Wireframe",&wireframe,1,wireframeControl);
+    glui2->add_checkbox("FreeRoam",&freeRoam,-1,NULL);
+    glui2->add_checkbox("Axis",&drawaxis,-1,NULL);
+    glui2->add_column(false);
 
-        GLUI_Listbox *listbox = glui2->add_listbox("Cameras",&camera,-1,NULL);
-        listbox->add_item(1,"Perspective");
-        listbox->add_item(2,"Top View");
-        listbox->add_item(3,"Player 1 View");
-        listbox->add_item(4,"Player 2 View");
-        listbox->set_int_val(2);
-        glui2->add_column(false);
+    GLUI_Listbox *listbox = glui2->add_listbox("Cameras",&camera,-1,NULL);
+    listbox->add_item(1,"Perspective");
+    listbox->add_item(2,"Top View");
+    listbox->add_item(3,"Player 1 View");
+    listbox->add_item(4,"Player 2 View");
+    listbox->set_int_val(2);
+    glui2->add_column(false);
 
-        GLUI_Listbox *listbox_2 = glui2->add_listbox("Scenes",&scene_texture,-1,NULL);
-        listbox_2->add_item(1,"Scene 1");
-        listbox_2->add_item(2,"Scene 2");
-        listbox_2->set_int_val(1);
-        glui2->add_column(false);
+    GLUI_Listbox *listbox_2 = glui2->add_listbox("Scenes",&scene_texture,-1,NULL);
+    listbox_2->add_item(1,"Scene 1");
+    listbox_2->add_item(2,"Scene 2");
+    listbox_2->set_int_val(1);
+    glui2->add_column(false);
 
 
-        /* We register the idle callback with GLUI, not with GLUT */
-        GLUI_Master.set_glutIdleFunc( myGlutIdle );
+    /* We register the idle callback with GLUI, not with GLUT */
+    GLUI_Master.set_glutIdleFunc( myGlutIdle );
    
-        initialization();
+    initialization();
                 
-        selectPiece = false;
-        selectCell = false;
-        anime = false;
+    selectPiece = false;
+    selectCell = false;
+    anime = false;
 
-        glutMainLoop();
+    glutMainLoop();
 
-        return 0;
+    return 0;
 }
